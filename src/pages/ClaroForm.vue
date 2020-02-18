@@ -31,7 +31,7 @@
                                  class="col"
                                  label="Nome"
                                  ref="nome"
-                                 v-if="completedForm"
+                                 v-if="completedForm !== 1"
                                  v-model="formData.name">
                         </q-input>
                     </div>
@@ -60,8 +60,9 @@
         </q-card>
         <q-footer class="bg-red">
             <q-tabs>
+                <q-tab @click="submitForm" name="back" icon="cancel" label="Voltar" v-if="completedForm !== 1 " />
                 <q-tab @click="checkForm" name="checar" icon="check" label="Checar" />
-                <q-tab @click="submitForm" name="send" icon="send" label="Enviar" v-if="completedForm" />
+                <q-tab @click="submitForm" name="send" icon="send" label="Próximo" v-if="completedForm !== 1 " />
             </q-tabs>
         </q-footer>
     </q-page>
@@ -75,7 +76,7 @@
         data() {
             return {
                 tab: true,
-                completedForm: false,
+                completedForm: 1,
                 formData: {},
                 myLocale: {
                     days: 'Domingo_Segunda_Terça_Quarta_Quinta_Sexta_Sábado'.split('_'),
@@ -96,7 +97,7 @@
 
             },
             checkForm() {
-                this.completedForm = true;
+                this.completedForm = 2;
                 this.$refs.cpf.validate();
                 if (!this.$refs.cpf.hasError) {
                     this.findCPF(this.formData.cpf);
