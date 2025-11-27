@@ -18,7 +18,7 @@
         "vuex": "latest"
     },
     "devDependencies": {
-        "@quasar/app": "^1.0.0"
+        "@quasar/app": "^3.3.2"
     },
     "engines": {
         "node": ">= 10.18.1",
